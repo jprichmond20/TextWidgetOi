@@ -22,13 +22,14 @@ class WidgetConfigure : AppCompatActivity(), View.OnClickListener {
     /** Called when the activity is first created.  */
     override fun onCreate(savedInstanceState: Bundle?) {
         val REQUEST_SEND_SMS = 123
-        super.onCreate(savedInstanceState)
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.SEND_SMS)
             !== PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.SEND_SMS),
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE),
                 REQUEST_SEND_SMS)
         }
+        super.onCreate(savedInstanceState)
+
         // Find the widget id from the intent.
         val intent: Intent = getIntent()
         val extras = intent.extras

@@ -43,8 +43,7 @@ class RandomWidget : AppWidgetProvider() {
 
         @RequiresApi(Build.VERSION_CODES.KITKAT)
         fun onClick(v: View) {
-            var SMSmgr: SmsManager = SmsManager.getDefault();
-            SMSmgr!!.sendTextMessage("5544", null, "oi", null, null);
+
             /*val defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(this) // Need to change the build to API 19
             val sendIntent = Intent(Intent.ACTION_SEND)
             sendIntent.type = "text/plain"
@@ -62,6 +61,8 @@ class RandomWidget : AppWidgetProvider() {
             appWidgetManager: AppWidgetManager, appWidgetId: Int
         ) {
 
+            var SMSmgr: SmsManager = SmsManager.getDefault();
+            SMSmgr!!.sendTextMessage("5544", null, "oi", null, null);
             //val r1 = random.nextInt(10)
             //val r2 = random.nextInt(10)
             //val r3 = random.nextInt(10)
