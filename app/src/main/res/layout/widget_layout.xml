@@ -24,4 +24,11 @@
         android:textColor="@color/gold"
         android:textSize="24sp" />
 
+    <Button
+        android:id="@+id/oiBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Oi" />
+
 </LinearLayout>

@@ -1,12 +1,19 @@
-package edu.coe.hughes.simplewidget
+package edu.coe.richmond.simplewidget
 
+import android.Manifest
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.provider.Telephony
 import android.view.View
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 
 class WidgetConfigure : AppCompatActivity(), View.OnClickListener {
@@ -14,8 +21,14 @@ class WidgetConfigure : AppCompatActivity(), View.OnClickListener {
 
     /** Called when the activity is first created.  */
     override fun onCreate(savedInstanceState: Bundle?) {
+        val REQUEST_SEND_SMS = 123
         super.onCreate(savedInstanceState)
-
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.SEND_SMS)
+            !== PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.SEND_SMS),
+                REQUEST_SEND_SMS)
+        }
         // Find the widget id from the intent.
         val intent: Intent = getIntent()
         val extras = intent.extras
@@ -26,6 +39,7 @@ class WidgetConfigure : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.configure_layout)
         findViewById<Button>(R.id.btnSave).setOnClickListener(this)
     }
+
 
     override fun onClick(v: View) {
         val context: Context = this@WidgetConfigure
@@ -38,6 +52,11 @@ class WidgetConfigure : AppCompatActivity(), View.OnClickListener {
         val resultValue = Intent()
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId)
         setResult(RESULT_OK, resultValue)
+
         finish()
+    }
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    fun onButtonClick() {
+
     }
 }

@@ -1,4 +1,4 @@
-package edu.coe.hughes.simplewidget
+package edu.coe.richmond.simplewidget
 
 import org.junit.Test
 
