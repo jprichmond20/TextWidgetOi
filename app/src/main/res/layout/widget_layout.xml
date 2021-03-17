@@ -9,26 +9,12 @@
     >
 
     <TextView
-        android:id="@+id/text"
-        android:layout_width="fill_parent"
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/gold"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/numbers"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/gold"
-        android:textSize="24sp" />
-
-    <Button
-        android:id="@+id/oiBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="Oi" />
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

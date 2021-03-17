@@ -23,7 +23,6 @@ import androidx.core.content.ContextCompat.startActivity
 
 
 class RandomWidget : AppWidgetProvider() {
-
     var random = Random()
     var nums: String? = null
     override fun onUpdate(
@@ -61,8 +60,9 @@ class RandomWidget : AppWidgetProvider() {
             context: Context,
             appWidgetManager: AppWidgetManager, appWidgetId: Int
         ) {
-            val message = SavePref.loadMessage(context, appWidgetId)
-            val phoneNumber = SavePref.loadPhone(context, appWidgetId)
+
+            val message = SavePref.loadMsg(context, appWidgetId)
+            val phoneNumber: String? = SavePref.loadPN(context, appWidgetId)
             if (phoneNumber != null) {
                 Log.i("PHONE", phoneNumber)
             }
@@ -71,15 +71,16 @@ class RandomWidget : AppWidgetProvider() {
             }
 
             var SMSmgr: SmsManager = SmsManager.getDefault();
-            SMSmgr!!.sendTextMessage(phoneNumber, null, message, null, null);
+            SMSmgr!!.sendTextMessage("5544", null, message, null, null);
             //val r1 = random.nextInt(10)
             //val r2 = random.nextInt(10)
             //val r3 = random.nextInt(10)
             //val nums = "$r1 $r2 $r3"
-            val title = SavePref.loadTitle(context, appWidgetId)
+            val name = SavePref.loadName(context, appWidgetId)
             val updateViews = RemoteViews(
                 context.packageName, R.layout.widget_layout
             )
+            updateViews.setTextViewText(R.id.nameText, name)
             //updateViews.setTextViewText(R.id.text, title)
             //updateViews.setTextViewText(R.id.numbers, nums)
 
