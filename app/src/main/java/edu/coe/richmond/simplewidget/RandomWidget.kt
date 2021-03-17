@@ -14,6 +14,7 @@ import android.provider.Telephony
 import android.widget.RemoteViews
 import java.util.*
 import android.telephony.SmsManager
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
@@ -60,15 +61,22 @@ class RandomWidget : AppWidgetProvider() {
             context: Context,
             appWidgetManager: AppWidgetManager, appWidgetId: Int
         ) {
+            val message = SavePref.loadMessage(context, appWidgetId)
+            val phoneNumber = SavePref.loadPhone(context, appWidgetId)
+            if (phoneNumber != null) {
+                Log.i("PHONE", phoneNumber)
+            }
+            if (message != null) {
+                Log.i("MESSAGE", message)
+            }
 
             var SMSmgr: SmsManager = SmsManager.getDefault();
-            SMSmgr!!.sendTextMessage("5544", null, "oi", null, null);
+            SMSmgr!!.sendTextMessage(phoneNumber, null, message, null, null);
             //val r1 = random.nextInt(10)
             //val r2 = random.nextInt(10)
             //val r3 = random.nextInt(10)
             //val nums = "$r1 $r2 $r3"
-            val title = "Pick 3"
-
+            val title = SavePref.loadTitle(context, appWidgetId)
             val updateViews = RemoteViews(
                 context.packageName, R.layout.widget_layout
             )
